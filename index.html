@@ -42,11 +42,23 @@
 
             <!-- Message -->
             <h4 id="message" class="text-danger text-center"></h4>
+
+            <!-- spinner -->
+            <div id="spinner" style="display: none; z-index: 100">
+                <div
+                    class="spinner-border position-absolute top-50 start-50"
+                    role="status"
+                >
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
         </section>
 
         <section class="container result-container">
             <!-- Phone Details -->
-            <div id="phone-details" class="w-50 mx-auto"></div>
+            <div class="row">
+                <div id="phone-details" class="col-12"></div>
+            </div>
 
             <!-- Phone search result -->
             <div

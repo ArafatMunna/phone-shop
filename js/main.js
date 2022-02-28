@@ -1,5 +1,9 @@
 const message = document.getElementById("message");
 
+const toggleSpinner = (value) => {
+    document.getElementById("spinner").style.display = value;
+};
+
 const searchPhone = () => {
     // Get input
     const searchField = document.getElementById("input-field");
@@ -13,6 +17,7 @@ const searchPhone = () => {
         // check error
         message.innerText = `"Please, write something"`;
     } else {
+        toggleSpinner("block");
         // Remove error message
         message.innerText = "";
 
@@ -34,6 +39,7 @@ const displayPhones = (phones) => {
 
     if (phoneLength == 0) {
         message.innerText = `"No result found"`;
+        toggleSpinner("none");
     } else {
         //result message
         message.innerText = `"${phoneLength} result found"`;
@@ -54,11 +60,14 @@ const displayPhones = (phones) => {
             cardContainer.appendChild(div);
             // console.log(phone);
         });
+        toggleSpinner("none");
     }
 };
 
 //Load details
 const showDetails = (slug) => {
+    toggleSpinner("block");
+
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
 
     fetch(url)
@@ -69,6 +78,8 @@ const showDetails = (slug) => {
 //Display phone details
 const displayPhoneDetails = (phone) => {
     console.log(phone);
+
+    // const { Bluetooth, GPS, NFC, Radio, USB, WLAN } = phone.others;
 
     const phoneDetails = document.getElementById("phone-details");
 
@@ -87,11 +98,15 @@ const displayPhoneDetails = (phone) => {
             <li><b>ChipSet</b>: ${phone.mainFeatures.chipSet}</li>
             <li><b>Display</b> Size: ${phone.mainFeatures.displaySize}</li>
             <li><b>Memory</b>: ${phone.mainFeatures.memory}</li>
+            <li><b>Sensors: </b>${phone.mainFeatures.sensors}</li>
 
             <p><b>Release Date:</b> ${
                 phone.releaseDate ? phone.releaseDate : "No release date found"
             }</p>
         </div>
     `;
+
     phoneDetails.appendChild(div);
+
+    toggleSpinner("none");
 };
