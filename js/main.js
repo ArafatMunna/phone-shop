@@ -30,7 +30,7 @@ const displayPhones = (phones) => {
     const cardContainer = document.getElementById("card-container");
 
     //clear previous result
-    cardContainer.textContent = "";
+    cardContainer.innerHTML = "";
 
     if (phoneLength == 0) {
         message.innerText = `"No result found"`;
@@ -57,18 +57,17 @@ const displayPhones = (phones) => {
     }
 };
 
-
 //Load details
-const showDetails = slug =>{
+const showDetails = (slug) => {
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
 
     fetch(url)
-        .then(response => response.json())
-        .then(data => displayPhoneDetails(data.data));
+        .then((response) => response.json())
+        .then((data) => displayPhoneDetails(data.data));
 };
 
 //Display phone details
-const displayPhoneDetails = phone =>{
+const displayPhoneDetails = (phone) => {
     console.log(phone);
 
     const phoneDetails = document.getElementById("phone-details");
@@ -82,7 +81,17 @@ const displayPhoneDetails = phone =>{
         <img src="${phone.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
+            <h6>Brand: ${phone.brand}</h6>
+
+            <h6>Main Features:</h6>
+            <li><b>ChipSet</b>: ${phone.mainFeatures.chipSet}</li>
+            <li><b>Display</b> Size: ${phone.mainFeatures.displaySize}</li>
+            <li><b>Memory</b>: ${phone.mainFeatures.memory}</li>
+
+            <p><b>Release Date:</b> ${
+                phone.releaseDate ? phone.releaseDate : "No release date found"
+            }</p>
         </div>
     `;
     phoneDetails.appendChild(div);
-}
+};
