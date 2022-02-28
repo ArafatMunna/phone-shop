@@ -35,7 +35,9 @@ const displayPhones = (phones) => {
     if (phoneLength == 0) {
         message.innerText = `"No result found"`;
     } else {
+        //result message
         message.innerText = `"${phoneLength} result found"`;
+
         phones.forEach((phone) => {
             const div = document.createElement("div");
             div.classList.add("col");
@@ -45,14 +47,18 @@ const displayPhones = (phones) => {
                     <div class="card-body">
                         <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
                         <h6>Brand: ${phone.brand}</h6>
-                        <button class="btn btn-primary">See Details</button>
+                        <button onclick="showDetails('${phone.slug}')" class="btn btn-primary">See Details</button>
                     </div>
                 </div>
             `;
             cardContainer.appendChild(div);
-            console.log(phone);
+            // console.log(phone);
         });
     }
-
-    console.log(typeof phones);
 };
+
+
+//Load details
+const showDetails = slug =>{
+    console.log(slug);
+}
