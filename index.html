@@ -23,21 +23,32 @@
 
             <!-- Search Area -->
             <div class="input-group mb-3 w-50 mx-auto">
-                <input id="input-field"
+                <input
+                    id="input-field"
                     type="text"
                     class="form-control"
                     placeholder="Search"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                 />
-                <button onclick="searchPhone()" class="input-group-text" id="search-button">
+                <button
+                    onclick="searchPhone()"
+                    class="input-group-text btn btn-primary"
+                    id="search-button"
+                >
                     Search
                 </button>
             </div>
 
             <!-- Error Message -->
-            <h4 id="error-message" class="text-danger text-center"></h4>
+            <h4 id="message" class="text-danger text-center"></h4>
+        </section>
 
+        <section class="container">
+            <div
+                id="card-container"
+                class="row row-cols-1 row-cols-md-3 g-4"
+            ></div>
         </section>
 
         <!-- Bootstrap JS -->
