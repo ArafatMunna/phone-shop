@@ -1,4 +1,13 @@
-#spinner {
+body {
+    background-color: #6de3e7;
+}
+.card-border {
+    border-radius: 30px;
+}
+.img-border {
+    border-radius: 40px;
+}
+.border- #spinner {
     display: flex;
     position: absolute;
     height: 100%;

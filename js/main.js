@@ -48,8 +48,8 @@ const displayPhones = (phones) => {
             const div = document.createElement("div");
             div.classList.add("col");
             div.innerHTML = `
-                <div class="card h-100">
-                    <img src="${phone.image}" class="card-img-top" alt="...">
+                <div class="card border-0 shadow h-100 card-border ">
+                    <img src="${phone.image}" class="card-img-top img-border" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
                         <h6>Brand: ${phone.brand}</h6>
@@ -88,8 +88,11 @@ const displayPhoneDetails = (phone) => {
     div.classList.add("w-50");
     div.classList.add("mx-auto");
     div.classList.add("m-3");
+    div.classList.add("card-border");
+    div.classList.add("shadow");
+    div.classList.add("border-0");
     div.innerHTML = `
-        <img src="${phone.image}" class="card-img-top" alt="...">
+        <img src="${phone.image}" class="card-img-top img-border" alt="...">
         <div class="card-body">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
             <h6>Brand: ${phone.brand}</h6>
