@@ -49,7 +49,7 @@ const displayPhones = (phones) => {
             div.classList.add("col");
             div.innerHTML = `
                 <div class="card border-0 shadow p-3 h-100 card-border ">
-                    <img src="${phone.image}" class="card-img-top img-border" alt="...">
+                    <img src="${phone.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
                         <h6>Brand: ${phone.brand}</h6>
@@ -93,14 +93,14 @@ const displayPhoneDetails = (phone) => {
     div.classList.add("border-0");
     div.classList.add("p-3");
     div.innerHTML = `
-        <img src="${phone.image}" class="card-img-top img-border" alt="...">
+        <img src="${phone.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
             <h6>Brand: ${phone.brand}</h6>
 
             <h6>Main Features:</h6>
             <li><b>ChipSet</b>: ${phone.mainFeatures.chipSet}</li>
-            <li><b>Display</b> Size: ${phone.mainFeatures.displaySize}</li>
+            <li><b>Display Size</b>: ${phone.mainFeatures.displaySize}</li>
             <li><b>Memory</b>: ${phone.mainFeatures.memory}</li>
             <li><b>Sensors: </b>${phone.mainFeatures.sensors}</li>
 
