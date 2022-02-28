@@ -60,5 +60,29 @@ const displayPhones = (phones) => {
 
 //Load details
 const showDetails = slug =>{
-    console.log(slug);
+    const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => displayPhoneDetails(data.data));
+};
+
+//Display phone details
+const displayPhoneDetails = phone =>{
+    console.log(phone);
+
+    const phoneDetails = document.getElementById("phone-details");
+
+    const div = document.createElement("div");
+    div.classList.add("card");
+    div.classList.add("w-50");
+    div.classList.add("mx-auto");
+    div.classList.add("m-3");
+    div.innerHTML = `
+        <img src="${phone.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Phone Name: ${phone.name}</h5>
+        </div>
+    `;
+    phoneDetails.appendChild(div);
 }
