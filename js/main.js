@@ -6,7 +6,6 @@ const toggleSpinner = (value) => {
     document.getElementById("spinner").style.display = value;
 };
 
-//20 products
 const productPaginate = (isAll = false, products) => {
     if (isAll) return productShow(products);
     else {
@@ -16,7 +15,6 @@ const productPaginate = (isAll = false, products) => {
     }
 };
 
-//All products
 const showAll = () => {
     productPaginate(true, products);
 };
@@ -26,6 +24,7 @@ const toggleShowAllButton = (value) => {
     document.getElementById("show-all").style.display = value;
 };
 
+//Load products
 const searchPhone = () => {
     // Get input
     const searchField = document.getElementById("input-field");
@@ -54,6 +53,7 @@ const searchPhone = () => {
     }
 };
 
+//Show products
 const productShow = (phones) => {
     const phoneLength = phones.length;
 
@@ -86,6 +86,7 @@ const productShow = (phones) => {
             `;
             cardContainer.appendChild(div);
         });
+        toggleShowAllButton("block");
         toggleSpinner("none");
     }
 };
