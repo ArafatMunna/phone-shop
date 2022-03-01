@@ -1,8 +1,33 @@
+let products = [];
 const message = document.getElementById("message");
 
+//Spinner
 const toggleSpinner = (value) => {
     document.getElementById("spinner").style.display = value;
 };
+
+//20 products
+const productPaginate = (isAll = false, products) => {
+    if (isAll) return productShow(products);
+    else {
+        let newProductArray =
+            products.length > 20 ? products.slice(0, 20) : products;
+        return productShow(newProductArray);
+    }
+};
+
+//all products
+const showAll = () => {
+    productPaginate(true, products);
+};
+
+//toggle show all button
+const toggleShowAllButton = (value) => {
+    document.getElementById("show-all").style.display = value;
+};
+products.length > 20
+    ? toggleShowAllButton("block")
+    : toggleShowAllButton("none");
 
 const searchPhone = () => {
     // Get input
@@ -25,17 +50,21 @@ const searchPhone = () => {
 
         fetch(url)
             .then((response) => response.json())
-            .then((data) => displayPhones(data.data));
+            .then((data) => {
+                products = data.data;
+                return productPaginate(false, products);
+            });
     }
 };
 
-const displayPhones = (phones) => {
+const productShow = (phones) => {
     const phoneLength = phones.length;
 
     const cardContainer = document.getElementById("card-container");
 
     //clear previous result
     cardContainer.innerHTML = "";
+    document.getElementById("phone-details").innerHTML = "";
 
     if (phoneLength == 0) {
         message.innerText = `"No result found"`;
@@ -43,13 +72,14 @@ const displayPhones = (phones) => {
     } else {
         //result message
         message.innerText = `"${phoneLength} result found"`;
-
         phones.forEach((phone) => {
             const div = document.createElement("div");
             div.classList.add("col");
             div.innerHTML = `
                 <div class="card border-0 shadow p-3 h-100 card-border ">
-                    <img src="${phone.image}" class="card-img-top" alt="...">
+                    <div class="w-50 mx-auto">
+                        <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>
                         <h6>Brand: ${phone.brand}</h6>
@@ -79,32 +109,51 @@ const showDetails = (slug) => {
 const displayPhoneDetails = (phone) => {
     console.log(phone);
 
-    // const { Bluetooth, GPS, NFC, Radio, USB, WLAN } = phone.others;
-
     const phoneDetails = document.getElementById("phone-details");
 
+    //clear previous result
+    phoneDetails.innerHTML = "";
+
     const div = document.createElement("div");
-    div.classList.add("card");
-    div.classList.add("w-50");
-    div.classList.add("mx-auto");
-    div.classList.add("m-3");
-    div.classList.add("card-border");
-    div.classList.add("shadow");
-    div.classList.add("border-0");
-    div.classList.add("p-3");
+    div.classList.add(
+        "card",
+        "w-50",
+        "mx-auto",
+        "m-3",
+        "card-border",
+        "shadow",
+        "border-0",
+        "p-3"
+    );
     div.innerHTML = `
-        <img src="${phone.image}" class="card-img-top" alt="...">
+        <div class="w-50 mx-auto">
+        <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
+        </div>
         <div class="card-body">
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
             <h6>Brand: ${phone.brand}</h6>
 
-            <h6>Main Features:</h6>
-            <li><b>ChipSet</b>: ${phone.mainFeatures.chipSet}</li>
-            <li><b>Display Size</b>: ${phone.mainFeatures.displaySize}</li>
-            <li><b>Memory</b>: ${phone.mainFeatures.memory}</li>
+            <p class="mb-1"><b>Main Features:</b></p>
+            <li><b>ChipSet: </b>${phone.mainFeatures.chipSet}</li>
+            <li><b>Display Size: </b>${phone.mainFeatures.displaySize}</li>
+            <li><b>Memory: </b>${phone.mainFeatures.memory}</li>
             <li><b>Sensors: </b>${phone.mainFeatures.sensors}</li>
-
-            <p><b>Release Date:</b> ${
+            <br>
+            <p class="mb-1"><b>Others:</b></p>
+            <li><b>Blutooth: </b>${
+                phone?.others?.Blutooth ? phone?.others?.Blutooth : ""
+            }</li>
+            <li><b>GPS: </b>${phone?.others?.GPS ? phone?.others?.GPS : ""}</li>
+            <li><b>NFC: </b>${phone?.others?.NFC ? phone?.others?.NFC : ""}</li>
+            <li><b>Radio: </b>${
+                phone?.others?.Radio ? phone?.others?.Radio : ""
+            }</li>
+            <li><b>USB: </b>${phone?.others?.USB ? phone?.others?.USB : ""}</li>
+            <li><b>WLAN: </b>${
+                phone?.others?.WLAN ? phone?.others?.WLAN : ""
+            }</li>
+        
+            <p class="mt-2"><b>Release Date:</b> ${
                 phone.releaseDate ? phone.releaseDate : "No release date found"
             }</p>
         </div>
