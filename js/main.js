@@ -133,6 +133,10 @@ const displayPhoneDetails = (phone) => {
             <h5 class="card-title">Phone Name: ${phone.name}</h5>
             <h6>Brand: ${phone.brand}</h6>
 
+            <p class="mt-2"><b>Release Date:</b> ${
+                phone.releaseDate ? phone.releaseDate : "No release date found"
+            }</p>
+
             <p class="mb-1"><b>Main Features:</b></p>
             <li><b>ChipSet: </b>${phone.mainFeatures.chipSet}</li>
             <li><b>Display Size: </b>${phone.mainFeatures.displaySize}</li>
@@ -152,10 +156,6 @@ const displayPhoneDetails = (phone) => {
             <li><b>WLAN: </b>${
                 phone?.others?.WLAN ? phone?.others?.WLAN : ""
             }</li>
-        
-            <p class="mt-2"><b>Release Date:</b> ${
-                phone.releaseDate ? phone.releaseDate : "No release date found"
-            }</p>
         </div>
     `;
 
