@@ -16,3 +16,23 @@ body {
 #show-all {
     display: none;
 }
+.product-details {
+    width: 50%;
+}
+.input-field {
+    width: 50%;
+}
+.button {
+    width: 50%;
+}
+@media screen and (max-width: 767px) {
+    .product-details {
+        width: 90%;
+    }
+    .input-field {
+        width: 90%;
+    }
+    .input-field {
+        width: 90%;
+    }
+}

@@ -111,6 +111,8 @@ const showDetails = (slug) => {
 
 //Display phone details
 const displayPhoneDetails = (phone) => {
+    // console.log(phone);
+
     const phoneDetails = document.getElementById("phone-details");
 
     //clear previous result
@@ -119,13 +121,13 @@ const displayPhoneDetails = (phone) => {
     const div = document.createElement("div");
     div.classList.add(
         "card",
-        "w-50",
         "mx-auto",
         "m-3",
         "card-border",
         "shadow",
         "border-0",
-        "p-3"
+        "p-3",
+        "product-details"
     );
     div.innerHTML = `
         <div class="w-50 mx-auto">
