@@ -16,18 +16,15 @@ const productPaginate = (isAll = false, products) => {
     }
 };
 
-//all products
+//All products
 const showAll = () => {
     productPaginate(true, products);
 };
 
-//toggle show all button
+//Toggle show all button
 const toggleShowAllButton = (value) => {
     document.getElementById("show-all").style.display = value;
 };
-products.length > 20
-    ? toggleShowAllButton("block")
-    : toggleShowAllButton("none");
 
 const searchPhone = () => {
     // Get input
@@ -71,7 +68,7 @@ const productShow = (phones) => {
         toggleSpinner("none");
     } else {
         //result message
-        message.innerText = `"${phoneLength} result found"`;
+        message.innerText = `"${phoneLength} result showed"`;
         phones.forEach((phone) => {
             const div = document.createElement("div");
             div.classList.add("col");
@@ -88,7 +85,6 @@ const productShow = (phones) => {
                 </div>
             `;
             cardContainer.appendChild(div);
-            // console.log(phone);
         });
         toggleSpinner("none");
     }
@@ -144,8 +140,8 @@ const displayPhoneDetails = (phone) => {
             <li><b>Sensors: </b>${phone.mainFeatures.sensors}</li>
             <br>
             <p class="mb-1"><b>Others:</b></p>
-            <li><b>Blutooth: </b>${
-                phone?.others?.Blutooth ? phone?.others?.Blutooth : ""
+            <li><b>Bluetooth: </b>${
+                phone?.others?.Bluetooth ? phone?.others?.Bluetooth : ""
             }</li>
             <li><b>GPS: </b>${phone?.others?.GPS ? phone?.others?.GPS : ""}</li>
             <li><b>NFC: </b>${phone?.others?.NFC ? phone?.others?.NFC : ""}</li>
