@@ -111,8 +111,6 @@ const showDetails = (slug) => {
 
 //Display phone details
 const displayPhoneDetails = (phone) => {
-    console.log(phone);
-
     const phoneDetails = document.getElementById("phone-details");
 
     //clear previous result
