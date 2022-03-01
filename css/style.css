@@ -4,7 +4,7 @@ body {
 .card-border {
     border-radius: 30px;
 }
-.border- #spinner {
+#spinner {
     display: flex;
     position: absolute;
     height: 100%;
