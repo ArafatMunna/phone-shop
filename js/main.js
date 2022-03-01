@@ -7,8 +7,10 @@ const toggleSpinner = (value) => {
 };
 
 const productPaginate = (isAll = false, products) => {
-    if (isAll) return productShow(products);
-    else {
+    if (isAll) {
+        toggleShowAllButton("none");
+        return productShow(products);
+    } else {
         let newProductArray =
             products.length > 20 ? products.slice(0, 20) : products;
         return productShow(newProductArray);
@@ -39,6 +41,7 @@ const searchPhone = () => {
         message.innerText = `"Please, write something"`;
     } else {
         toggleSpinner("block");
+
         // Remove error message
         message.innerText = "";
 
@@ -48,6 +51,11 @@ const searchPhone = () => {
             .then((response) => response.json())
             .then((data) => {
                 products = data.data;
+                if (products.length > 20) {
+                    toggleShowAllButton("block");
+                } else {
+                    toggleShowAllButton("none");
+                }
                 return productPaginate(false, products);
             });
     }
@@ -68,7 +76,7 @@ const productShow = (phones) => {
         toggleSpinner("none");
     } else {
         //result message
-        message.innerText = `"${phoneLength} result showed"`;
+        message.innerText = `"${products.length} result found"`;
         phones.forEach((phone) => {
             const div = document.createElement("div");
             div.classList.add("col");
@@ -86,7 +94,6 @@ const productShow = (phones) => {
             `;
             cardContainer.appendChild(div);
         });
-        toggleShowAllButton("block");
         toggleSpinner("none");
     }
 };
